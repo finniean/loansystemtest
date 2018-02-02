@@ -1,8 +1,8 @@
 <?php $title='Search Customer' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php'); require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
 
-$cus_cid = mysqli_real_escape_string($link, $_REQUEST['cus_cid']);
+$customer_id = mysqli_real_escape_string($link, $_REQUEST['customer_id']);
 $sql = "SELECT * FROM customers
-WHERE cid LIKE '%$cus_cid%' ";
+WHERE customer_id LIKE '%$customer_id%' ";
 $result = mysqli_query($link, $sql);
 ?>
 
@@ -25,12 +25,12 @@ $result = mysqli_query($link, $sql);
 					while($row = mysqli_fetch_assoc($result)) { 
 						echo "
 		               	<tr class='resultsrow'>
-		               		<td>" . $row['cid']. "</td>
+		               		<td>" . $row['customer_id']. "</td>
 		                   	<td>" . $row['fname']. "</td>
 		                   	<td>" . $row['lname']. "</td>
-		                   	<td><a href='cus_loan.php?cid=". $row['cid'] ."'>New Loan</td>
+		                   	<td><a href='cus_payment.php'>New Loan</td>
 		               </tr>";
-		               $_SESSION['cid'] = $row['cid'];
+		               $_SESSION['customer_id'] = $row['customer_id'];
 		           	}
 	           	} 
 	           	else { 

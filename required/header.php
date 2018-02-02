@@ -11,9 +11,9 @@
 		<div id="site_title">
 			<h1>SME Loan System</h1>
 		</div>
-		<div id="time">
+		<div id="time" style="background: white;">
 			<?php
-			echo date("m/d/Y h:i:s A");
+			echo date("M/d/Y h:i:s A");
 			?>
 		</div>
 	</div>

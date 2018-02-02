@@ -9,45 +9,57 @@
 				<?php
 				session_start();
 				require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
+				
 				$fname = $mname = $lname = $fnameErr = $mnameErr = $lnameErr = '';
 				if(isset($_POST['register'])){
 				    $valid = true;
+
 				    if (empty($_POST["cus_fname"])) {
 				        $valid = false;
 				        $fnameErr = "First Name is required";
-				    } else {
+				    }
+
+				    else {
 				        $fname = mysqli_real_escape_string($link, $_REQUEST['cus_fname']);
 				    }
+
 				    if (empty($_POST["cus_mname"])) {
 				        $valid = false;
 				        $mnameErr = "Middle Name is required";
-				    } else {
+				    }
+
+				    else {
 				        $mname = mysqli_real_escape_string($link, $_REQUEST['cus_mname']);
 				    }
+
 				    if (empty($_POST["cus_lname"])) {
 				        $valid = false;
 				        $lnameErr = "Last Name is required";
-				    } else {
+				    }
+				    else {
 				        $lname = mysqli_real_escape_string($link, $_REQUEST['cus_lname']);
 				    }
-				    $cid = date('mdhis', time());
-				    $admin_id = $_SESSION['aid'];
+
+				    $customer_id = date('mdyis');
+				    $admin_id = $_SESSION['admin_id'];
+
 				    if ($valid){
 				        // $birth_date =  $birth_month ."/". $birth_day ."/". $birth_year;
-				        $sql = "INSERT INTO `customers` (`cid`, `admin_id`, `fname`, `mname`, `lname`)
-				        VALUES
-				        ('$cid', '$admin_id', '$fname', '$mname', '$lname')";
+				        $sql = "INSERT INTO `customers` (`customer_id`, `admin_id`, `fname`, `mname`, `lname`) VALUES ('$customer_id', '$admin_id', '$fname', '$mname', '$lname')";
+
 				        if(mysqli_query($link, $sql)){
 				            echo "<div class='alert alert-success'>
 				            <strong>Success!</strong> You have been registered. You can login now.
 				            </div>";
-				        } 
+				        }
 				    }
+
 				    else {
 				        echo "<div class='alert alert-danger'>
 				        <strong>Sorry!</strong> Please fill the required fields.
 				        </div>";
 				    }
+				    
 				    mysqli_close($link);
 				}
 				?>

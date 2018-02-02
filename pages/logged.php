@@ -5,6 +5,10 @@
 	<div class="container">
 		<div class="content">
 			<h4>Welcome</h4>
+			<?php
+			session_start();
+			echo $_SESSION['admin_id'];
+			?>
 		</div>
 	</div>
 </div>

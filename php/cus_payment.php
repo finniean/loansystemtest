@@ -1,10 +1,10 @@
-<?php $title='Customer Loan' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php');?>
+<?php $title='Customer Payment' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php');?>
 
 <!-- Content -->
 <div class="wrapper">
 	<div class="container">
 		<div class="content">
-			<h4>New Customer Loan</h4>
+			<h4>Customer Payment</h4>
 			<?php
 			session_start();
 			require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
@@ -25,28 +25,28 @@
 					";
 					$balance = $row['balance'];
 }
-				    if(isset($_POST['process_loan'])){
-				    	$loan_amount = mysqli_real_escape_string($link, $_REQUEST['loan_amount']);
-				    	$new_balance = $balance + $loan_amount;
-				    	$loan_id = date('mdyis');
+				    if(isset($_POST['process_payment'])){
+				    	$payment_amount = mysqli_real_escape_string($link, $_REQUEST['payment_amount']);
+				    	$new_balance = $balance - $payment_amount;
+				    	$payment_id = date('mdyis');
 
 				    	$update = "UPDATE `customers` SET `balance` = '$new_balance' WHERE `customers`.`customer_id` = '$customer_id'";
 
 				    	if($result = mysqli_query($link, $update)){
-					    	$insert = "INSERT INTO `loans` (`loan_id`, `customer_id`, `admin_id`, `loan_amount`, `loan_date`) VALUES ('$loan_id', '$customer_id', '$admin_id', '$loan_amount', '$date_now');";
+					    	$insert = "INSERT INTO `payments` (`payment_id`, `customer_id`, `admin_id`, `payment_amount`, `payment_date`) VALUES ('$payment_id', '$customer_id', '$admin_id', '$payment_amount', '$date_now');";
 					    	$inserted = mysqli_query($link, $insert);
 					    }
 		    		}
 		    	
 		    }
 		    ?>
-		    <div id='loan_form'>
-		    	<form id='loan' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method='post'>
-		    		<div id="loan_amount">
-						<label>Loan Amount</label>
-						<input type="number" name="loan_amount" min="1" max="9999999">
+		    <div id='payment_form'>
+		    	<form id='payment' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method='post'>
+		    		<div id="payment_amount">
+						<label>Payment Amount</label>
+						<input type="number" name="payment_amount" min="1" max="9999999">
 					</div>
-					<button type="submit"  name="process_loan">Process Loan</button>
+					<button type="submit"  name="process_payment">Process payment</button>
 		    	</form>
 		    </div>
 		</div>
