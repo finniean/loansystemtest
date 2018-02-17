@@ -8,12 +8,32 @@
 <body>
 <!-- Header -->
 	<div class="wrapper">
-		<div id="site_title">
-			<h1>SME Loan System</h1>
-		</div>
-		<div id="time" style="background: white;">
-			<?php
-			echo date("M/d/Y h:i:s A");
-			?>
-		</div>
+		<div class="header_branding clearfix">
+			<div id="site_title">
+				<img src="/images/logo.png">
+			</div>
+			<div id="time">
+				<h4>
+				<script>
+				$("#timer").html(data); 
+				$(document).ready(function() {
+
+    function update() {
+      $.ajax({
+       type: 'POST',
+       url: 'datetime.php',
+       timeout: 1000,
+       success: function(data) {
+          $("#timer").html(data); 
+          window.setTimeout(update, 1000);
+       }
+      });
+     }
+     update();
+
+});
+				</script>
+				</h4>
+			</div>
+		</div>	
 	</div>

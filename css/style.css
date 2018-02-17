@@ -1,9 +1,9 @@
 body{
-	background-color: #272822;
+	background: url('/images/bg.png');
 	margin: 0;
     padding: 0;
-    color: black;
-    font-family: "Helvetica Neue", Verdana, Arial, Helvetica, sans-serif;
+    color: white;
+    font-family: 'Oswald', sans-serif;
     font-size: 100%;
     line-height: 1.4;
 }
@@ -14,18 +14,120 @@ body{
 }
 .container{
 	padding: 30px;
-	background-color: white;
 }
 span.error {
     color: red;
 }
-/*HEADER*/
-#site_title{
-	padding: 0 30px;
-    border-bottom: 1px black solid;
-    background-color: white;
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }
-#site_title h1{
+img{
+    width: 100%;
+}
+a{
+    text-decoration: none;
+}
+/*CONTENT*/
+#front-logo{
+    margin-bottom: 50px;
+}
+.content{
+    min-height: 300px;
+}
+.content.login{
+    width: 35%;
+    margin: auto;
+    background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;
+    background-repeat: repeat-x!important;
+    border-color: #FF9821!important;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 50px;
+    color: #272822;
+    box-shadow: -5px 5px #5D6052;
+}
+.index-space:before{
+    min-height: 50px;
+    content: "";
+    display: table;
+}
+.form-group label{
+    width: 100%;
+    display: block;
+    font-weight: bold;
+}
+.form-group input{
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 6px 12px;
+    border: 1px solid #FF9821;
+    border-radius: 4px;
+}
+form button{
+    color: white;
+    padding: 6px 12px;
+    margin: 10px 0;
+    font-size: 14px;
+    background-image: linear-gradient(to bottom,#35372E 0,#272822 100%)!important;
+    background-repeat: repeat-x!important;
+    border-color: #272822!important;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+form button:hover{
+    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%)!important;
+    background-repeat: repeat-x!important;
+    border-color: #41443A!important;
+    color: white;
+}
+.site-navigation a{
+    background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;
+    background-repeat: repeat-x!important;
+    border-color: #FF9821!important;
+    border: 1px solid transparent;
+    border-radius: 10px 10px 0 0;
+    padding: 5px 15px;
+    display: inline-block;
+    color: #272822;
+}
+.site-navigation a:hover{
+    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%)!important;
+    background-repeat: repeat-x!important;
+    border-color: #41443A!important;
+    color: white;
+}
+/*HEADER*/
+.header_branding{
+	padding: 0 30px;
+}
+.header_branding #site_title{
+    color: #FF9821;
 	margin: 0;
 	padding: 20px 0;
+    width: 50%;
+    float: left;
+}
+.header_branding #time{
+    margin: 0;
+    padding: 20px 0;
+    width: 50%;
+    float: right;
+}
+.header_branding #time h4{
+    float: right;
+}
+/*FOOTER*/
+.footer{
+    padding: 0 30px;
+    background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;
+    background-repeat: repeat-x!important;
+    border-color: #FF9821!important;
+}
+.footer #site_navigation a{
+    display: block;
+}
+.footer .wrapper{
+    padding: 30px 0;
 }

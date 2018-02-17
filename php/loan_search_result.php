@@ -14,24 +14,24 @@ $result = mysqli_query($link, $sql);
 			<h4>Search Result</h4>
 			<div class="form-result">
 	        	<table>
-	         	<?php 
-	         	session_start();
+	       		<?php
 	         	if (mysqli_num_rows($result)> 0) { 
 	         		echo "
 					<tr>
 					   <th>Customer ID</th>
 					   <th>Middle Name</th>
 					   <th>Last Name</th>
+					   <th>Balance</th>
 					</tr>";
 					while($row = mysqli_fetch_assoc($result)) { 
 						echo "
 		               	<tr class='resultsrow'>
-		               		<td>" . $row['customer_id']. "</td>
-		                   	<td>" . $row['fname']. "</td>
-		                   	<td>" . $row['lname']. "</td>
-		                   	<td><a href='cus_loan.php'>New Loan</td>
+		               		<td>" . $row['customer_id'] . "</td>
+		                   	<td>" . $row['fname'] . "</td>
+		                   	<td>" . $row['lname'] . "</td>
+		                   	<td>" . $row['balance'] . "</td>
+		                   	<td><a href='cus_loan.php?customer_id=". $row['customer_id'] ."'>New Loan</td>
 		               </tr>";
-		               $_SESSION['customer_id'] = $row['customer_id'];
 		           	}
 	           	} 
 	           	else { 

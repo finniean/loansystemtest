@@ -1,9 +1,10 @@
 <?php $title='Search Customer' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php'); require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
 
-$cus_cid=mysqli_real_escape_string($link, $_REQUEST['cus_cid']);
-$sql="SELECT * FROM customers
-WHERE cid LIKE '%$cus_cid%' ";
-$result=mysqli_query($link, $sql);
+$customer_id = mysqli_real_escape_string($link, $_REQUEST['customer_id']);
+
+$sql = "SELECT * FROM customers
+WHERE customer_id LIKE '%$customer_id%' ";
+$result = mysqli_query($link, $sql);
 ?>
 
 <!-- Content -->
@@ -25,7 +26,7 @@ $result=mysqli_query($link, $sql);
 	               		<td>" . $row['fname']. "</td>
 	                   	<td>" . $row['mname']. "</td>
 	                   	<td>" . $row['lname']. "</td>
-	                   	<td><a href='view_cus.php?cid=". $row['cid'] ."'>View</td>
+	                   	<td><a href='view_cus.php?customer_id=". $row['customer_id'] ."'>View</td>
 	               </tr>"; } } else { echo "<div class='alert alert-success' role='alert'><p>0 results</p></div>"; } ?>
 	       		</table>
 	       		<a href="/pages/search_cus_p.php">Search Again</a>

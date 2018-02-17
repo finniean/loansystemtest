@@ -9,7 +9,7 @@
 				<form id="search_cus" action='/php/search_cus.php' method='post'>
 					<div id="cus_cid">
 						<label>Customer ID</label>
-						<input type="text" name="cus_cid">
+						<input type="text" name="customer_id">
 					</div>
 					<button type="submit"  name="search">Search</button>
 				</form>

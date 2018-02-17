@@ -1,6 +1,7 @@
 <?php $title='Search Customer' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php'); require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
 
 $customer_id = mysqli_real_escape_string($link, $_REQUEST['customer_id']);
+
 $sql = "SELECT * FROM customers
 WHERE customer_id LIKE '%$customer_id%' ";
 $result = mysqli_query($link, $sql);
@@ -14,7 +15,6 @@ $result = mysqli_query($link, $sql);
 			<div class="form-result">
 	        	<table>
 	         	<?php 
-	         	session_start();
 	         	if (mysqli_num_rows($result)> 0) { 
 	         		echo "
 					<tr>
@@ -28,9 +28,9 @@ $result = mysqli_query($link, $sql);
 		               		<td>" . $row['customer_id']. "</td>
 		                   	<td>" . $row['fname']. "</td>
 		                   	<td>" . $row['lname']. "</td>
-		                   	<td><a href='cus_payment.php'>New Loan</td>
+		                   	<td>" . $row['balance']. "</td>
+		                   	<td><a href='cus_payment.php?customer_id=". $row['customer_id'] ."'>New Loan</td>
 		               </tr>";
-		               $_SESSION['customer_id'] = $row['customer_id'];
 		           	}
 	           	} 
 	           	else { 

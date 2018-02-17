@@ -6,15 +6,18 @@
 		<div class="content">
 			<h4>Customer Profile</h4>
 			<?php
-			$cid = $_GET['cid'];
+			$customer_id = $_GET['customer_id'];
 
-			$sql="SELECT * FROM customers
-				WHERE cid='$cid'";
-			$result=mysqli_query($link, $sql);
+			$sql = "SELECT * FROM `customers`
+				WHERE customer_id = '$customer_id'";
+			$result = mysqli_query($link, $sql);
 
 			if (mysqli_num_rows($result)> 0) {
 				while ($row = mysqli_fetch_array($result)) {
 					echo "
+						<td>" . $row['fname']. "</td>
+	                   	<td>" . $row['mname']. "</td>
+	                   	<td>" . $row['lname']. "</td>
 						<img src='/images/".$row['image']."' >
 					";
 		        }
