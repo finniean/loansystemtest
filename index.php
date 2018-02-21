@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SME Loan System - <?php echo $title; ?></title>
+	<title>SME Loan System</title>
 	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
@@ -53,7 +53,8 @@
 
 			            if(mysqli_num_rows($result)> 0) {
 			            	$_SESSION['admin_id'] = $row['admin_id'];
-			                header('Location:/pages/logged.php');
+			            	$_SESSION['firstname'] = $row['fname'];
+			                header('Location:/pages/new_reg.php');
 			            }
 
 			            else {

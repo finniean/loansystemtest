@@ -14,3 +14,8 @@ Spacing =
 Customer--------
 Customer Login
 Customer Loan Request
+
+Customer Reg
+Phone number
+
+Max payment

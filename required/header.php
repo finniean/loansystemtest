@@ -14,25 +14,7 @@
 			</div>
 			<div id="time">
 				<h4>
-				<script>
-				$("#timer").html(data); 
-				$(document).ready(function() {
-
-    function update() {
-      $.ajax({
-       type: 'POST',
-       url: 'datetime.php',
-       timeout: 1000,
-       success: function(data) {
-          $("#timer").html(data); 
-          window.setTimeout(update, 1000);
-       }
-      });
-     }
-     update();
-
-});
-				</script>
+					<?php session_start(); echo $_SESSION['admin_id']; ?>
 				</h4>
 			</div>
 		</div>	

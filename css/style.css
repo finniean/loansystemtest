@@ -39,7 +39,8 @@ a{
 .content.login{
     width: 35%;
     margin: auto;
-    background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;
+    /*background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;*/
+    background-color: #fff;
     background-repeat: repeat-x!important;
     border-color: #FF9821!important;
     border: 1px solid transparent;

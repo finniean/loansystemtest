@@ -7,7 +7,6 @@
 			<h4>Register New Customer</h4>
 			<div id="new_cus">
 				<?php
-				session_start();
 				require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
 				
 				$fname = $mname = $lname = $birth_month = $birth_day = $birth_year = $phone = $address = $image = $fnameErr = $mnameErr = $lnameErr = $phoneErr = $birthErr = $addressErr = $imageErr = '';
