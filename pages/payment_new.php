@@ -1,13 +1,13 @@
-<?php $title='Search Customer' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php');?>
+<?php $title='Customer Payment' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php');?>
 
 <!-- Content -->
 <div class="wrapper">
 	<div class="container">
 		<div class="content">
-			<h4>Search Customer</h4>
-			<div id="search_cus">
-				<form id="search_cus" action='/php/search_cus.php' method='post'>
-					<div id="cus_cid">
+			<h4>Customer Payment</h4>
+			<div id="payment_cus">
+				<form id="payment_cus" action='/pages/payment_search_result.php' method='post'>
+					<div id="cus_cid" class="form-group">
 						<label>Customer ID</label>
 						<input type="text" name="customer_id">
 					</div>

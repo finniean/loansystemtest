@@ -36,10 +36,12 @@ a{
 .content{
     min-height: 300px;
 }
+.content h4{
+    color: #FF9821;
+}
 .content.login{
     width: 35%;
     margin: auto;
-    /*background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;*/
     background-color: #fff;
     background-repeat: repeat-x!important;
     border-color: #FF9821!important;
@@ -83,6 +85,22 @@ form button:hover{
     border-color: #41443A!important;
     color: white;
 }
+
+form button:disabled{
+    color: graytext !important;
+}
+select {
+    padding: 6px 12px;
+    margin: 10px 10px 10px 0;
+    border: 1px solid #FF9821;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.reg_col1,
+.reg_col2{
+    width: 50%;
+    float: left;
+}
 .site-navigation a{
     background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;
     background-repeat: repeat-x!important;
@@ -97,6 +115,64 @@ form button:hover{
     background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%)!important;
     background-repeat: repeat-x!important;
     border-color: #41443A!important;
+    color: white;
+}
+.site-navigation li.active a{
+    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%)!important;
+    background-repeat: repeat-x!important;
+    border-color: #41443A!important;
+    color: white;
+}
+/*Customer Info*/
+.customer_info .col1{
+    width: 30%;
+    float: left;
+}
+.customer_info .col2,
+.customer_info .col3{
+    width: 35%;
+    float: left;
+}
+.customer_info .customer_image{
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px #FF9821 solid;
+}
+.customer_info label{
+    color: #FF9821;
+}
+.customer_info p{
+    margin-top: 0;
+}
+input#loan_amount {
+    width: 70%;
+}
+.loan_history,
+.payment_history{
+    width: 50%;
+    float: left;
+}
+/*Results*/
+.form-result table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.resultslabel th,
+.resultsrow td{
+    width: 20%;
+    text-align: left;
+    padding: 5px 10px;
+    border: 1px solid white;
+}
+.resultsrow a:hover{
+    color: #41443A;
+}
+.resultsrow a,
+.resultslabel th{
+    color: #FF9821;
+}
+button a{
     color: white;
 }
 /*HEADER*/

@@ -19,51 +19,9 @@
 			</div>
 			<div id="login">
 				<?php
-				session_start();
-				require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
-
-				$invalidErr = '';
-
-				if(isset($_POST['login'])){
-			        $valid = true;
-
-			        if (empty($_POST['username'])) {
-			            $valid = false;
-			            $invalidErr = 'Please input your Username.';
-			        }
-
-			        else {
-			            $username = mysqli_real_escape_string($link, $_REQUEST['username']);
-			        }
-
-			        if (empty($_POST['password'])) {
-			            $valid = false;
-			            $invalidErr = 'Please input your Password.';
-			        }
-
-			        else {
-			            $password = mysqli_real_escape_string($link, $_REQUEST['password']);
-			        }
-
-			        if ($valid) {
-			            $sql = "SELECT * FROM admins WHERE username = '$username' AND password = '$password'";
-			            $result = mysqli_query($link, $sql);
-			            $row = mysqli_fetch_assoc($result);
-			            
-
-			            if(mysqli_num_rows($result)> 0) {
-			            	$_SESSION['admin_id'] = $row['admin_id'];
-			            	$_SESSION['firstname'] = $row['fname'];
-			                header('Location:/pages/new_reg.php');
-			            }
-
-			            else {
-			                $invalidErr = 'Email or Password is incorrect.';
-			            }
-			        }
-				}
+					include($_SERVER[ 'DOCUMENT_ROOT']. '/php/login.php');
 				?>
-				<span class='error'><?php echo $invalidErr; ?></span>
+				<span class='error'><?php echo $invalidErr;  ?></span>
 				<form id="login" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 				<div class="form-group" id="username">
 					<label>Username</label>
