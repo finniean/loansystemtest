@@ -6,7 +6,7 @@
 		<div class="content">
 			<h4>Search Customer</h4>
 			<div id="search_cus">
-				<form id="search_cus" action='/php/search_cus.php' method='post'>
+				<form id="search_cus" action='/pages/cus_search_result.php' method='post'>
 					<div id="cus_cid" class="form-group">
 						<label>Customer ID</label>
 						<input type="text" name="customer_id">

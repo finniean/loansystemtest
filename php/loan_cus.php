@@ -13,6 +13,13 @@ if (mysqli_num_rows($result)> 0) {
 	while ($row = mysqli_fetch_array($result)) {
 		$balance = $row['balance'];
 		$tier = $row['tier'];
+		$birth = $row['birth_date'];
+		$today= date('m/d/Y');
+		
+		$datetime1 = new DateTime($today) ;
+		$datetime2 = new DateTime($birth) ;
+		$interval = $datetime1->diff($datetime2);
+		$age = $interval->format('%Y');
 
 		if ($tier >=1 && $tier <=5) {
 			$max_loan = '1999';
@@ -40,7 +47,7 @@ if (mysqli_num_rows($result)> 0) {
 			<div class='customer_info clearfix'>
 				<div class='col1'>
 					<div class='customer_image'>
-						<img src='/images/".$row['image']."'>
+						<img src='/uploads/".$row['image']."'>
 					</div>
 				</div>
 				<div class='col2'>
@@ -51,7 +58,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Birthday</label>
 					<p>".$row['birth_date']."</p>
 					<label>Age</label>
-					<p>".$row['birth_date']."</p>
+					<p>".$age."</p>
 				</div>
 				<div class='col3'>
 					<label>Phone Number</label>
@@ -60,6 +67,8 @@ if (mysqli_num_rows($result)> 0) {
 					<p>".$row['address']."</p>
 					<label>Balance</label>
 					<p>₱ ".$row['balance']."</p>
+					<label>Last Loan Due Date</label>
+					<p>".$row['due_date']."</p>
 					<div id='loan_amount' class='form-group'>
 						<label>Loan Amount</label>
 						<input type='number' id='loan_amount' name='loan_amount' min='1000' max=".$max_loan.">
@@ -86,15 +95,14 @@ if(isset($_POST['process_loan'])){
 		$balance = $row['balance'];
 		$new_balance = $balance + $loan_amount;
 
-		$update = "UPDATE `customers` SET `balance` = '$new_balance' WHERE `customers`.`customer_id` = '$customer_id'";
+		$update = "UPDATE `customers` SET `balance` = '$new_balance', `due_date` = '$due_date' WHERE `customers`.`customer_id` = '$customer_id'";
 
 		if(mysqli_query($link, $update)){
 			$loan_id = date('mdyis');
 			$customer_id = $_SESSION['customer_id'];
 			$admin_id = $_SESSION['admin_id'];
-			$date_now = date("M/d/Y h:i:s A");
 
-			$insert = "INSERT INTO `loans` (`loan_id`, `customer_id`, `admin_id`, `loan_amount`, `loan_date`) VALUES ('$loan_id', '$customer_id', '$admin_id', '$loan_amount', '$date_now');";
+			$insert = "INSERT INTO `loans` (`loan_id`, `customer_id`, `admin_id`, `loan_amount`, `loan_date`, `due_date`) VALUES ('$loan_id', '$customer_id', '$admin_id', '$loan_amount', '$date_now', '$due_date');";
 
 			if(mysqli_query($link, $insert)){
 				header('Location:/pages/loan_processed.php');

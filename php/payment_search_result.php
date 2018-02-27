@@ -7,8 +7,7 @@ $sql = "SELECT * FROM customers
 $result = mysqli_query($link, $sql);
 
 if (mysqli_num_rows($result)> 0) {
-
-echo "
+	echo "
 	<tr class='resultslabel'>
 		<th>Customer ID</th>
 		<th>First Name</th>
@@ -19,13 +18,13 @@ echo "
 ;
 	while($row = mysqli_fetch_assoc($result)) { 
 		echo "
-			<tr class='resultsrow'>
-				<td>" . $row['customer_id'] . "</td>
-				<td>" . $row['fname'] . "</td>
-				<td>" . $row['lname'] . "</td>
-				<td>₱ " . $row['balance'] . "</td>
-				<td><a href='payment_cus.php?customer_id=". $row['customer_id'] ."'>New Loan</td>
-			</tr>"
+		<tr class='resultsrow'>
+			<td>" . $row['customer_id'] . "</td>
+			<td>" . $row['fname'] . "</td>
+			<td>" . $row['lname'] . "</td>
+			<td>₱ " . $row['balance'] . "</td>
+			<td><a href='payment_cus.php?customer_id=". $row['customer_id'] ."'>New Loan</a></td>
+		</tr>"
 		;
 	}
 } 

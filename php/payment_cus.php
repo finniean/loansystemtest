@@ -12,12 +12,29 @@ if (mysqli_num_rows($result)> 0) {
 
 	while ($row = mysqli_fetch_array($result)) {
 		$balance = $row['balance'];
+		$birth = $row['birth_date'];
+		$today= date('m/d/Y');
+		
+		$datetime1 = new DateTime($today) ;
+		$datetime2 = new DateTime($birth) ;
+		$interval = $datetime1->diff($datetime2);
+		$age = $interval->format('%Y');
+
+		if ($balance <= 0){
+			$disabled = 'disabled';
+			$loan_button = 'No Existing Loan';
+		}
+
+		else{
+			$disabled = '';
+			$loan_button = 'Process Payment';
+		}
 
 		$customer_info = "
 			<div class='customer_info clearfix'>
 				<div class='col1'>
 					<div class='customer_image'>
-						<img src='/images/".$row['image']."'>
+						<img src='/uploads/".$row['image']."'>
 					</div>
 				</div>
 				<div class='col2'>
@@ -28,7 +45,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Birthday</label>
 					<p>".$row['birth_date']."</p>
 					<label>Age</label>
-					<p>".$row['birth_date']."</p>
+					<p>".$age."</p>
 				</div>
 				<div class='col3'>
 					<label>Phone Number</label>
@@ -37,11 +54,13 @@ if (mysqli_num_rows($result)> 0) {
 					<p>".$row['address']."</p>
 					<label>Balance</label>
 					<p>₱ ".$row['balance']."</p>
+					<label>Last Loan Due Date</label>
+					<p>".$row['due_date']."</p>
 					<div id='payment_amount' class='form-group'>
 						<label>Payment Amount</label>
-						<input type='number' id='payment_amount' name='payment_amount'>
+						<input type='number' id='payment_amount' name='payment_amount' max=".$row['balance'].">
 					</div>
-					<button type='submit'  name='process_payment'>Process Payment</button>
+					<button type='submit'  name='process_payment' ".$disabled.">".$loan_button."</button>
 				</div>
 			</div>
 		"
@@ -61,7 +80,9 @@ if(isset($_POST['process_payment'])){
 	if($valid) {
 		$customer_id = $_SESSION['customer_id'];
 		$balance = $row['balance'];
-		$new_balance = "$balance - $payment_amount";
+		echo $balance;
+		echo $payment_amount;
+		$new_balance = abs($balance - $payment_amount);
 
 		$update = "UPDATE `customers` SET `balance` = '$new_balance' WHERE `customers`.`customer_id` = '$customer_id'";
 
@@ -74,7 +95,7 @@ if(isset($_POST['process_payment'])){
 			$insert = "INSERT INTO `payments` (`payment_id`, `customer_id`, `admin_id`, `payment_amount`, `payment_date`) VALUES ('$payment_id', '$customer_id', '$admin_id', '$payment_amount', '$date_now');";
 
 			if(mysqli_query($link, $insert)){
-				header('Location:/pages/payment_processed.php');
+				// header('Location:/pages/payment_processed.php');
 			}
 		}
 	}

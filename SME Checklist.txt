@@ -1,21 +1,4 @@
 SME Checklist
 
-Home
-Register
-New Customer
-New Loan
-Loan Payment
-Customer Profile
-Customer History
-Customer Balance
 Admin Reg
-Spacing =
-
-Customer--------
-Customer Login
-Customer Loan Request
-
-Customer Reg
-Phone number
-
-Max payment
+Payment Process

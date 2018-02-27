@@ -51,6 +51,27 @@ a{
     color: #272822;
     box-shadow: -5px 5px #5D6052;
 }
+.content.admin{
+    width: 60%;
+    margin: auto;
+    background-color: #fff;
+    background-repeat: repeat-x!important;
+    border-color: #FF9821!important;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 50px;
+    color: #272822;
+    box-shadow: -5px 5px #5D6052;
+}
+.content.admin a,
+.content.login a{
+    color: #FF9821;
+    font-weight: bold;
+}
+.content.admin a:hover,
+.content.login a:hover{
+    color: #41443A;
+}
 .index-space:before{
     min-height: 50px;
     content: "";
@@ -117,31 +138,38 @@ select {
     border-color: #41443A!important;
     color: white;
 }
-.site-navigation li.active a{
+/*.site-navigation li.active a{
     background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%)!important;
     background-repeat: repeat-x!important;
     border-color: #41443A!important;
     color: white;
-}
+}*/
 /*Customer Info*/
+.admin_info .col1,
 .customer_info .col1{
     width: 30%;
     float: left;
 }
+.admin_info .col2,
+.admin_info .col3,
 .customer_info .col2,
 .customer_info .col3{
     width: 35%;
     float: left;
 }
+.admin_info .admin_image,
 .customer_info .customer_image{
     width: 200px;
+    height: 100%;
     margin: 0 auto;
     padding: 10px;
     border: 1px #FF9821 solid;
 }
+.admin_info label,
 .customer_info label{
     color: #FF9821;
 }
+.admin_info p
 .customer_info p{
     margin-top: 0;
 }
@@ -186,14 +214,20 @@ button a{
     width: 50%;
     float: left;
 }
-.header_branding #time{
+.header_branding #welcome{
     margin: 0;
     padding: 20px 0;
     width: 50%;
     float: right;
 }
-.header_branding #time h4{
+.header_branding #welcome h4{
     float: right;
+}
+.header_branding #welcome a{
+    color: #FF9821;
+}
+.header_branding #welcome a:hover{
+    color: #41443A;
 }
 /*FOOTER*/
 .footer{

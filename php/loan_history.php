@@ -1,5 +1,5 @@
 <?php
-$history = "SELECT * FROM `loans` WHERE `loans`.`customer_id` = '$customer_id'";
+$history = "SELECT * FROM `loans` WHERE `loans`.`customer_id` = '$customer_id' ORDER BY loan_date DESC LIMIT 0, 3";
 $his = mysqli_query($link, $history);
 
 if (mysqli_num_rows($his)> 0) {

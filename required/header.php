@@ -12,9 +12,14 @@
 			<div id="site_title">
 				<img src="/images/logo.png">
 			</div>
-			<div id="time">
+			<div id="welcome">
 				<h4>
-					<?php session_start(); echo $_SESSION['admin_id']; ?>
+					<?php
+					session_start(); 
+					echo "Welcome! Admin ";
+					echo "<a href='view_admin.php?admin_id=". $_SESSION['admin_id'] ."'>". $_SESSION['firstname'] ."</a>
+					<br><a href='/php/logout.php'>Log Out</a>";
+					?>
 				</h4>
 			</div>
 		</div>	

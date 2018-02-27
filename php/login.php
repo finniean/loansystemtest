@@ -28,13 +28,13 @@
         if ($valid) {
             $sql = "SELECT * FROM admins WHERE username = '$username' AND password = '$password'";
             $result = mysqli_query($link, $sql);
-            $row = mysqli_fetch_assoc($result);
-            
 
             if(mysqli_num_rows($result)> 0) {
-            	$_SESSION['admin_id'] = $row['admin_id'];
-            	$_SESSION['firstname'] = $row['fname'];
-                header('Location:/pages/search_cus.php');
+                while ($row = mysqli_fetch_array($result)){
+                    $_SESSION['admin_id'] = $row['admin_id'];
+                    $_SESSION['firstname'] = $row['fname'];
+                    header('Location:/pages/cus_search.php');
+                }
             }
 
             else {

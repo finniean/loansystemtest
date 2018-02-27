@@ -7,7 +7,7 @@
 			<h4>Register New Customer</h4>
 			<div id="new_cus">
 				<?php include($_SERVER[ 'DOCUMENT_ROOT']. '/php/new_reg.php');?>
-				<form id="new_cus" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method='post'>
+				<form id="new_cus" class="clearfix" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method='post' enctype="multipart/form-data">
 					<div class='reg_col1'>
 						<div id="cus_fname" class="form-group">
 							<label>First Name <span class='error'>* <?php echo $fnameErr; ?></span></label>
@@ -58,11 +58,11 @@
 	                    </div>
 	                    <div class='form-group' class="form-group">
 		                    <label>Photo <span class="error">* <?php echo $imageErr; ?></span></label>
-		                    <input type="file" name="image">
+		                    <input name="cus_image" type="file">
 		                </div>
 		                <div class='form-group' class="form-group">
 		                    <label>Additional Documents</label>
-		                    <input type="file" name="add_docu">
+		                    <input name="add_docu" type="file">
 		                </div>
 		            </div>
                     <button type="submit"  name="register">Register</button>

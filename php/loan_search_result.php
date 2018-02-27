@@ -24,7 +24,7 @@ echo "
 				<td>" . $row['fname'] . "</td>
 				<td>" . $row['lname'] . "</td>
 				<td>₱ " . $row['balance'] . "</td>
-				<td><a href='/pages/loan_cus.php?customer_id=". $row['customer_id'] ."'>New Loan</td>
+				<td><a href='/pages/loan_cus.php?customer_id=". $row['customer_id'] ."'>New Loan</a></td>
 			</tr>"
 		;
 	}
