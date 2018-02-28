@@ -46,10 +46,10 @@ if (mysqli_num_rows($result)> 0) {
 					<p>".$row['birth_date']."</p>
 					<label>Age</label>
 					<p>".$age."</p>
-				</div>
-				<div class='col3'>
 					<label>Phone Number</label>
 					<p>".$row['phone_number']."</p>
+				</div>
+				<div class='col3'>
 					<label>Address</label>
 					<p>".$row['address']."</p>
 					<label>Balance</label>
@@ -79,10 +79,7 @@ if(isset($_POST['process_payment'])){
 
 	if($valid) {
 		$customer_id = $_SESSION['customer_id'];
-		$balance = $row['balance'];
-		echo $balance;
-		echo $payment_amount;
-		$new_balance = abs($balance - $payment_amount);
+		$new_balance = $balance - $payment_amount;
 
 		$update = "UPDATE `customers` SET `balance` = '$new_balance' WHERE `customers`.`customer_id` = '$customer_id'";
 

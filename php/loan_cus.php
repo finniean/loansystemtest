@@ -59,10 +59,10 @@ if (mysqli_num_rows($result)> 0) {
 					<p>".$row['birth_date']."</p>
 					<label>Age</label>
 					<p>".$age."</p>
-				</div>
-				<div class='col3'>
 					<label>Phone Number</label>
 					<p>".$row['phone_number']."</p>
+				</div>
+				<div class='col3'>
 					<label>Address</label>
 					<p>".$row['address']."</p>
 					<label>Balance</label>
@@ -94,6 +94,7 @@ if(isset($_POST['process_loan'])){
 		$customer_id = $_SESSION['customer_id'];
 		$balance = $row['balance'];
 		$new_balance = $balance + $loan_amount;
+		$due_date = date('M/d/Y', strtotime('+2 months'));
 
 		$update = "UPDATE `customers` SET `balance` = '$new_balance', `due_date` = '$due_date' WHERE `customers`.`customer_id` = '$customer_id'";
 
@@ -101,6 +102,7 @@ if(isset($_POST['process_loan'])){
 			$loan_id = date('mdyis');
 			$customer_id = $_SESSION['customer_id'];
 			$admin_id = $_SESSION['admin_id'];
+			$date_now = date("M/d/Y h:i:s A");
 
 			$insert = "INSERT INTO `loans` (`loan_id`, `customer_id`, `admin_id`, `loan_amount`, `loan_date`, `due_date`) VALUES ('$loan_id', '$customer_id', '$admin_id', '$loan_amount', '$date_now', '$due_date');";
 

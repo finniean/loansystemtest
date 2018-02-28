@@ -5,6 +5,7 @@
 			<a href="/pages/new_reg.php">New Customer</a>
 			<a href="/pages/loan_new.php">New Loan</a>
 			<a href="/pages/payment_new.php">Payment</a>
+			<a href="/pages/reports.php">Reports</a>
 		</div>
 	</div>
 </div>
