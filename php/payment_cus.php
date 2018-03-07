@@ -11,9 +11,13 @@ if (mysqli_num_rows($result)> 0) {
 	$_SESSION['customer_id'] = $_GET['customer_id'];
 
 	while ($row = mysqli_fetch_array($result)) {
-		$balance = $row['balance'];
+		$_SESSION['balance'] = $row['balance'];
+		$balance = $_SESSION['balance'];
+		$_SESSION['tier'] = $row['tier'];
+		$tier = $_SESSION['tier'];
 		$birth = $row['birth_date'];
 		$today= date('m/d/Y');
+
 		
 		$datetime1 = new DateTime($today) ;
 		$datetime2 = new DateTime($birth) ;
@@ -78,6 +82,7 @@ if(isset($_POST['process_payment'])){
 	}
 
 	if($valid) {
+		$balance = $_SESSION['balance'];
 		$customer_id = $_SESSION['customer_id'];
 		$new_balance = $balance - $payment_amount;
 
@@ -92,7 +97,23 @@ if(isset($_POST['process_payment'])){
 			$insert = "INSERT INTO `payments` (`payment_id`, `customer_id`, `admin_id`, `payment_amount`, `payment_date`) VALUES ('$payment_id', '$customer_id', '$admin_id', '$payment_amount', '$date_now');";
 
 			if(mysqli_query($link, $insert)){
-				// header('Location:/pages/payment_processed.php');
+				header('Location:/pages/payment_processed.php');
+			}
+		}
+		if($balance == $payment_amount){
+			$date_now = date("M/d/Y h:i:s A");
+			$customer_id = $_SESSION['customer_id'];
+
+			$paid = "UPDATE `loans` SET `date_paid` = '$date_now' WHERE `loans`.`customer_id` = '$customer_id'";
+
+			if(mysqli_query($link, $paid)){
+				$tier = $_SESSION['tier'];
+				$new_tier = $tier + 1;
+				$customer_id = $_SESSION['customer_id'];
+
+				$remove = "UPDATE `customers` SET `due_date` = 'No existing loan balance', `tier` = '$new_tier' WHERE `customers`.`customer_id` = '$customer_id'";
+				$removal = mysqli_query($link, $remove);
+
 			}
 		}
 	}

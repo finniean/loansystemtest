@@ -7,7 +7,8 @@ if(isset($_POST['admin_register'])){
 
     if (empty($_POST["admin_username"])) {
         $valid = false;
-        $usernameErr = "Username is required";
+        $usernameErr = "required";
+        $usernameError = "error";
     }
 
     else {
@@ -16,7 +17,8 @@ if(isset($_POST['admin_register'])){
 
     if (empty($_POST["admin_password"])) {
         $valid = false;
-        $passwordErr = "Password is required";
+        $passwordErr = "required";
+        $passwordError = "error";
     }
 
     else {
@@ -25,7 +27,8 @@ if(isset($_POST['admin_register'])){
 
     if (empty($_POST["admin_fname"])) {
         $valid = false;
-        $fnameErr = "First Name is required";
+        $fnameErr = "required";
+        $fnameError = 'error';
     }
 
     else {
@@ -34,7 +37,8 @@ if(isset($_POST['admin_register'])){
 
     if (empty($_POST["admin_mname"])) {
         $valid = false;
-        $mnameErr = "Middle Name is required";
+        $mnameErr = "required";
+        $mnameError = 'error';
     }
 
     else {
@@ -43,53 +47,69 @@ if(isset($_POST['admin_register'])){
 
     if (empty($_POST["admin_lname"])) {
         $valid = false;
-        $lnameErr = "Last Name is required";
+        $lnameErr = "required";
+        $lnameError = 'error';
     }
     else {
         $lname = mysqli_real_escape_string($link, $_REQUEST['admin_lname']);
     }
+
     if (empty($_POST["birth_month"])) {
         $valid = false;
-        $birthErr = "Birth Month is required";
+        $birthErr = "required";
+        $birthError = 'error';
     }
     else {
         $birth_month = mysqli_real_escape_string($link, $_REQUEST['birth_month']);
     }
+
     if (empty($_POST["birth_day"])) {
         $valid = false;
-        $birthErr = "Birth Day is required";
+        $birthErr = "required";
+        $birthError = 'error';
     }
     else {
         $birth_day = mysqli_real_escape_string($link, $_REQUEST['birth_day']);
     }
+
     if (empty($_POST["birth_year"])) {
         $valid = false;
-        $birthErr = "Birth Year is required";
+        $birthErr = "required";
+        $birthError = 'error';
     }
     else {
         $birth_year = mysqli_real_escape_string($link, $_REQUEST['birth_year']);
     }
+
     if (empty($_POST["admin_phone_number"])) {
         $valid = false;
-        $phoneErr = "Last Name is required";
+        $phoneErr = "required";
+        $phoneError = 'error';
     }
     else {
         $phone = mysqli_real_escape_string($link, $_REQUEST['admin_phone_number']);
     }
+
     if (empty($_POST["admin_address"])) {
         $valid = false;
-        $addressErr = "Address is required";
+        $addressErr = "required";
+        $addressError = "error";
     }
     else {
         $address = mysqli_real_escape_string($link, $_REQUEST['admin_address']);
     }
     
-    $image = $_FILES['image']['name'];
-    $target = $_SERVER[ 'DOCUMENT_ROOT']."/uploads/".basename($image);
-    move_uploaded_file($_FILES['image']['tmp_name'], $target);
-    $add_docu = $_FILES['add_docu']['name'];
-    $docutarget = $_SERVER[ 'DOCUMENT_ROOT']."/add_docus/".basename($image);
-    move_uploaded_file($_FILES['image']['tmp_name'], $docutarget);
+    if(empty($_FILES['admin_image']['name'])) {
+        $valid = false;
+        $imageErr = "required";
+        $imageError = "error";
+    }
+    else{
+        $image = $_FILES['admin_image']['name'];
+        $target = $_SERVER[ 'DOCUMENT_ROOT']."/uploads/".basename($image);
+        move_uploaded_file($_FILES['admin_image']['tmp_name'], $target);
+    }
+
     $admin_id = date('mdyis');
 
     if ($valid){
@@ -102,11 +122,8 @@ if(isset($_POST['admin_register'])){
     }
 
     else {
-        echo "<div class='alert alert-danger'>
-        <strong>Sorry!</strong> Please fill the required fields.
-        </div>";
+        echo "<span class='error' style='font-size: 100%!important;'>
+        Sorry! Please fill the <strong>REQUIRED</strong> fields.
+        </span>";
     }
-    
-    mysqli_close($link);
 }
-?>

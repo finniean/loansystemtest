@@ -71,7 +71,7 @@ if (mysqli_num_rows($result)> 0) {
 					<p>".$row['due_date']."</p>
 					<div id='loan_amount' class='form-group'>
 						<label>Loan Amount</label>
-						<input type='number' id='loan_amount' name='loan_amount' min='1000' max=".$max_loan.">
+						<input type='number' id='loan_amount' name='loan_amount' min='1000' max='".$max_loan."' placeholder='Max Loan = ₱".$max_loan."'>
 					</div>
 					<button type='submit'  name='process_loan' ".$disabled.">".$loan_button."</button>
 				</div>

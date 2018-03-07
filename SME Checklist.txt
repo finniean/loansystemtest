@@ -2,3 +2,7 @@ SME Checklist
 
 Loan paid indication
 Payment Process
+
+Registration successful message
+Start end date error
+Loan and Payment successful message

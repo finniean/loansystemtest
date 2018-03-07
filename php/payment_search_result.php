@@ -23,7 +23,7 @@ if (mysqli_num_rows($result)> 0) {
 			<td>" . $row['fname'] . "</td>
 			<td>" . $row['lname'] . "</td>
 			<td>₱ " . $row['balance'] . "</td>
-			<td><a href='payment_cus.php?customer_id=". $row['customer_id'] ."'>New Loan</a></td>
+			<td><a href='payment_cus.php?customer_id=". $row['customer_id'] ."'>Payment</a></td>
 		</tr>"
 		;
 	}

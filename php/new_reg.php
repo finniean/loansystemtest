@@ -1,13 +1,14 @@
 <?php
 require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
 				
-$fname = $mname = $lname = $birth_month = $birth_day = $birth_year = $phone = $address = $image = $fnameErr = $mnameErr = $lnameErr = $phoneErr = $birthErr = $addressErr = $imageErr = '';
+$fname = $mname = $lname = $birth_month = $birth_day = $birth_year = $phone = $address = $image = $fnameErr = $mnameErr = $lnameErr = $phoneErr = $birthErr = $addressErr = $imageErr = $fnameError = $mnameError = $lnameError = $birthError = $phoneError = $addressError = $imageError = '';
 if(isset($_POST['register'])){
     $valid = true;
 
     if (empty($_POST["cus_fname"])) {
         $valid = false;
-        $fnameErr = "First Name is required";
+        $fnameErr = "required";
+        $fnameError = 'error';
     }
 
     else {
@@ -16,7 +17,8 @@ if(isset($_POST['register'])){
 
     if (empty($_POST["cus_mname"])) {
         $valid = false;
-        $mnameErr = "Middle Name is required";
+        $mnameErr = "required";
+        $mnameError = 'error';
     }
 
     else {
@@ -25,53 +27,73 @@ if(isset($_POST['register'])){
 
     if (empty($_POST["cus_lname"])) {
         $valid = false;
-        $lnameErr = "Last Name is required";
+        $lnameErr = "required";
+        $lnameError = 'error';
     }
     else {
         $lname = mysqli_real_escape_string($link, $_REQUEST['cus_lname']);
     }
+
     if (empty($_POST["birth_month"])) {
         $valid = false;
-        $birthErr = "Birth Month is required";
+        $birthErr = "required";
+        $birthError = 'error';
     }
     else {
         $birth_month = mysqli_real_escape_string($link, $_REQUEST['birth_month']);
     }
+
     if (empty($_POST["birth_day"])) {
         $valid = false;
-        $birthErr = "Birth Day is required";
+        $birthErr = "required";
+        $birthError = 'error';
     }
     else {
         $birth_day = mysqli_real_escape_string($link, $_REQUEST['birth_day']);
     }
+
     if (empty($_POST["birth_year"])) {
         $valid = false;
-        $birthErr = "Birth Year is required";
+        $birthErr = "required";
+        $birthError = 'error';
     }
     else {
         $birth_year = mysqli_real_escape_string($link, $_REQUEST['birth_year']);
     }
+
     if (empty($_POST["cus_phone_number"])) {
         $valid = false;
-        $phoneErr = "Last Name is required";
+        $phoneErr = "required";
+        $phoneError = 'error';
     }
     else {
         $phone = mysqli_real_escape_string($link, $_REQUEST['cus_phone_number']);
     }
+
     if (empty($_POST["cus_address"])) {
         $valid = false;
-        $addressErr = "Address is required";
+        $addressErr = "required";
+        $addressError = "error";
     }
     else {
         $address = mysqli_real_escape_string($link, $_REQUEST['cus_address']);
     }
     
-    $image = $_FILES['image']['name'];
-    $target = $_SERVER[ 'DOCUMENT_ROOT']."/uploads/".basename($image);
-    move_uploaded_file($_FILES['image']['tmp_name'], $target);
+    if(empty($_FILES['cus_image']['name'])) {
+        $valid = false;
+        $imageErr = "required";
+        $imageError = "error";
+    }
+    else{
+        $image = $_FILES['cus_image']['name'];
+        $target = $_SERVER[ 'DOCUMENT_ROOT']."/uploads/".basename($image);
+        move_uploaded_file($_FILES['cus_image']['tmp_name'], $target);
+    }
+    
     $add_docu = $_FILES['add_docu']['name'];
     $docutarget = $_SERVER[ 'DOCUMENT_ROOT']."/add_docus/".basename($image);
-    move_uploaded_file($_FILES['image']['tmp_name'], $docutarget);
+    move_uploaded_file($_FILES['add_docu']['tmp_name'], $docutarget);
+
     $customer_id = date('mdyis');
     $admin_id = $_SESSION['admin_id'];
 
@@ -80,16 +102,16 @@ if(isset($_POST['register'])){
         $sql = "INSERT INTO `customers` (`customer_id`, `admin_id`, `fname`, `mname`, `lname`, `birth_date`, `phone_number`, `address`, `image`, `add_docu`) VALUES ('$customer_id', '$admin_id', '$fname', '$mname', '$lname', '$birth_date', '$phone', '$address', '$image', '$add_docu')";
 
         if(mysqli_query($link, $sql)){
-            echo "<div class='alert alert-success'>
+            echo "<span class='error'>
             <strong>Success!</strong> You have been registered. You can login now.
-            </div>";
+            </span>";
         }
     }
 
     else {
-        echo "<div class='alert alert-danger'>
-        <strong>Sorry!</strong> Please fill the required fields.
-        </div>";
+        echo "<span class='error' style='font-size: 100%;!important;'>
+        Sorry! Please fill the <strong>REQUIRED</strong> fields.
+        </span>";
     }
     
     mysqli_close($link);

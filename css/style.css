@@ -17,6 +17,13 @@ body{
 }
 span.error {
     color: red;
+    font-size: 12px;
+}
+.error input {
+    border: 2px solid red !important;
+}
+.error select {
+    border: 2px solid red !important;
 }
 .clearfix::after {
     content: "";
@@ -43,8 +50,8 @@ a{
     width: 35%;
     margin: auto;
     background-color: #fff;
-    background-repeat: repeat-x!important;
-    border-color: #FF9821!important;
+    background-repeat: repeat-x;
+    border-color: #FF9821;
     border: 1px solid transparent;
     border-radius: 4px;
     padding: 50px;
@@ -55,8 +62,8 @@ a{
     width: 60%;
     margin: auto;
     background-color: #fff;
-    background-repeat: repeat-x!important;
-    border-color: #FF9821!important;
+    background-repeat: repeat-x;
+    border-color: #FF9821;
     border: 1px solid transparent;
     border-radius: 4px;
     padding: 50px;
@@ -94,21 +101,21 @@ form button{
     padding: 6px 12px;
     margin: 10px 0;
     font-size: 14px;
-    background-image: linear-gradient(to bottom,#35372E 0,#272822 100%)!important;
-    background-repeat: repeat-x!important;
-    border-color: #272822!important;
+    background-image: linear-gradient(to bottom,#35372E 0,#272822 100%);
+    background-repeat: repeat-x;
+    border-color: #272822 !important;
     border: 1px solid transparent;
     border-radius: 4px;
 }
 form button:hover{
-    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%)!important;
-    background-repeat: repeat-x!important;
-    border-color: #41443A!important;
+    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%);
+    background-repeat: repeat-x;
+    border-color: #41443A;
     color: white;
 }
 
 form button:disabled{
-    color: graytext !important;
+    color: graytext ;
 }
 select {
     padding: 6px 12px;
@@ -123,9 +130,9 @@ select {
     float: left;
 }
 .site-navigation a{
-    background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;
-    background-repeat: repeat-x!important;
-    border-color: #FF9821!important;
+    background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%);
+    background-repeat: repeat-x;
+    border-color: #FF9821;
     border: 1px solid transparent;
     border-radius: 10px 10px 0 0;
     padding: 5px 15px;
@@ -133,15 +140,15 @@ select {
     color: #272822;
 }
 .site-navigation a:hover{
-    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%)!important;
-    background-repeat: repeat-x!important;
-    border-color: #41443A!important;
+    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%);
+    background-repeat: repeat-x;
+    border-color: #41443A;
     color: white;
 }
 /*.site-navigation li.active a{
-    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%)!important;
-    background-repeat: repeat-x!important;
-    border-color: #41443A!important;
+    background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%);
+    background-repeat: repeat-x;
+    border-color: #41443A;
     color: white;
 }*/
 /*Customer Info*/
@@ -232,9 +239,9 @@ button a{
 /*FOOTER*/
 .footer{
     padding: 0 30px;
-    background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%)!important;
-    background-repeat: repeat-x!important;
-    border-color: #FF9821!important;
+    background-image: linear-gradient(to bottom,#fe8f0e 0,#FF9821 100%);
+    background-repeat: repeat-x;
+    border-color: #FF9821;
 }
 .footer #site_navigation a{
     display: block;

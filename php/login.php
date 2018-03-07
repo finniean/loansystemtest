@@ -2,14 +2,16 @@
 	session_start();
 	require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
 
-	$username = $password = $invalidErr = '';
+	$emailError = $passwordError = $username = $password = $emailinvalidErr = $passwordinvalidErr = '';
 
 	if(isset($_POST['login'])){
         $valid = true;
 
         if (empty($_POST['username'])) {
             $valid = false;
-            $invalidErr = 'Please input your credentials.';
+            $emailinvalidErr = 'Please input your email
+            .';
+            $emailError = 'error';
         }
 
         else {
@@ -18,7 +20,8 @@
 
         if (empty($_POST['password'])) {
             $valid = false;
-            $invalidErr = 'Please input your credentials.';
+            $passwordinvalidErr = 'Please input your password.';
+            $passwordError = 'error';
         }
 
         else {

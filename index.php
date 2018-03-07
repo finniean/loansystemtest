@@ -21,14 +21,13 @@
 				<?php
 					include($_SERVER[ 'DOCUMENT_ROOT']. '/php/login.php');
 				?>
-				<span class='error'><?php echo $invalidErr;  ?></span>
 				<form id="login" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-				<div class="form-group" id="username">
-					<label>Username</label>
-					<input type="text" name="username">
+				<div class='form-group <?php echo $emailError; ?>' id="username">
+					<label>Username <span class='error'><?php echo $emailinvalidErr;  ?></span></label>
+					<input type="text" name="username"><br>
 				</div>
-				<div class="form-group" id="password">
-					<label>Password</label>
+				<div class="form-group <?php echo $passwordError; ?>" id="password">
+					<label>Password <span class='error'><?php echo $passwordinvalidErr;  ?></span></label>
 					<input type="password" name="password">
 				</div>
 				<button type="submit" name="login">Login</button>

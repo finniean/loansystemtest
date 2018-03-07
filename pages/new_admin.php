@@ -21,20 +21,20 @@
 				<?php include($_SERVER[ 'DOCUMENT_ROOT']. '/php/new_admin.php');?>
 				<form id="new_admin" class="clearfix" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method='post' enctype="multipart/form-data">
 					<div class='reg_col1'>
-						<div id="admin_fname" class="form-group">
-							<label>First Name <span class='error'>* <?php echo $fnameErr; ?></span></label>
+						<div id="admin_fname" class="form-group <?php echo $fnameError; ?>">
+							<label>First Name <span class='error'><?php echo $fnameErr; ?></span></label>
 							<input type="text" name="admin_fname">
 						</div>
-						<div id="admin_mname" class="form-group">
-							<label>Middle Name <span class='error'>* <?php echo $mnameErr; ?></span></label>						
+						<div id="admin_mname" class="form-group <?php echo $mnameError; ?>">
+							<label>Middle Name <span class='error'><?php echo $mnameErr; ?></span></label>						
 							<input type="text" name="admin_mname">
 						</div>
-						<div id="admin_lname" class="form-group">
-							<label>Last Name <span class='error'>* <?php echo $lnameErr; ?></span></label>						
+						<div id="admin_lname" class="form-group <?php echo $lnameError; ?>">
+							<label>Last Name <span class='error'><?php echo $lnameErr; ?></span></label>						
 							<input type="text" name="admin_lname">
 						</div>
-						<div id='admin_birth' class="form-group">
-	                        <label>Birth Day <span class="error">* <?php echo $birthErr; ?></span></label>
+						<div id='admin_birth' class="form-group <?php echo $birthError; ?>">
+	                        <label>Birth Day <span class="error"><?php echo $birthErr; ?></span></label>
 		                    <?php
 		                    echo '<select name="birth_month">';
 		                    echo '<option selected disabled>Month</option>';
@@ -58,27 +58,27 @@
 		                    echo '</select> ';
 		                    ?>
 	                    </div>
-	                    <div id="admin_phone_number" class="form-group">
-	                    	<label>Phone Number <span class="error">* <?php echo $phoneErr; ?></span></label>
+	                    <div id="admin_phone_number" class="form-group <?php echo $phoneError; ?>">
+	                    	<label>Phone Number <span class="error"><?php echo $phoneErr; ?></span></label>
 							<input type="text" name="admin_phone_number">
 	                    </div>
 	                </div>
 	                <div class="reg_col2">
-	                    <div id="admin_address" class="form-group">
-	                    	<label>Address <span class="error">* <?php echo $addressErr; ?></span></label>
+	                    <div id="admin_address" class="form-group <?php echo $addressError; ?>">
+	                    	<label>Address <span class="error"><?php echo $addressErr; ?></span></label>
 							<input type="text" name="admin_address">
 	                    </div>
-	                    <div id="admin_username" class="form-group">
-							<label>Username <span class='error'>* <?php echo $usernameErr; ?></span></label>
+	                    <div id="admin_username" class="form-group <?php echo $usernameError; ?>">
+							<label>Username <span class='error'><?php echo $usernameErr; ?></span></label>
 							<input type="text" name="admin_username">
 						</div>
-						<div id="admin_password" class="form-group">
-							<label>Password <span class='error'>* <?php echo $passwordErr; ?></span></label>
+						<div id="admin_password" class="form-group <?php echo $passwordError; ?>">
+							<label>Password <span class='error'><?php echo $passwordErr; ?></span></label>
 							<input type="password" name="admin_password">
 						</div>
-	                    <div class='form-group' class="form-group">
-		                    <label>Photo <span class="error">* <?php echo $imageErr; ?></span></label>
-		                    <input name="image" type="file">
+	                    <div class="form-group <?php echo $imageError; ?>">
+		                    <label>Photo <span class="error"><?php echo $imageErr; ?></span></label>
+		                    <input name="admin_image" type="file">
 		                </div>
 		            </div>
                     <button type="submit"  name="admin_register">Register</button>
