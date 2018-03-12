@@ -12,6 +12,8 @@ if (mysqli_num_rows($result)> 0) {
 	while ($row = mysqli_fetch_array($result)) {
 		$balance = $row['balance'];
 		$birth = $row['birth_date'];
+		$bday = date_create($row['birth_date']);
+		$birth_date = date_format($bday, 'M/d/Y');
 		$today= date('m/d/Y');
 		
 		$datetime1 = new DateTime($today) ;
@@ -32,7 +34,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Full Name</label>
 					<p>".$row['fname']." ".$row['mname']." ".$row['lname']."</p>
 					<label>Birthday</label>
-					<p>".$row['birth_date']."</p>
+					<p>".$birth_date."</p>
 					<label>Age</label>
 					<p>".$age."</p>
 				</div>
@@ -46,8 +48,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Last Loan Due Date</label>
 					<p>".$row['due_date']."</p>
 				</div>
-			</div>
-		"
+			</div>"
 		;
 	}
 }

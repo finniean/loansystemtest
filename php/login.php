@@ -36,7 +36,7 @@
                 while ($row = mysqli_fetch_array($result)){
                     $_SESSION['admin_id'] = $row['admin_id'];
                     $_SESSION['firstname'] = $row['fname'];
-                    header('Location:/pages/cus_search.php');
+                    header('Location:/pages/due_loans.php');
                 }
             }
 

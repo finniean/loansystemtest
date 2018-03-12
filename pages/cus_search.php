@@ -1,4 +1,9 @@
-<?php $title='Search Customer' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php');?>
+<?php $title='Search Customer' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php');
+
+if (empty($_SESSION['admin_id'])){
+	header('Location:/index.php');
+}
+?>
 
 <!-- Content -->
 <div class="wrapper">
@@ -10,6 +15,18 @@
 					<div id="cus_cid" class="form-group">
 						<label>Customer ID</label>
 						<input type="text" name="customer_id">
+					</div>
+					<div id="cus_cid" class="form-group">
+						<label>First Name</label>
+						<input type="text" name="customer_fname">
+					</div>
+					<div id="cus_cid" class="form-group">
+						<label>Middle Name</label>
+						<input type="text" name="customer_mname">
+					</div>
+					<div id="cus_cid" class="form-group">
+						<label>Last Name</label>
+						<input type="text" name="customer_lname">
 					</div>
 					<button type="submit"  name="search">Search</button>
 				</form>

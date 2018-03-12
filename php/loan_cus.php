@@ -14,6 +14,8 @@ if (mysqli_num_rows($result)> 0) {
 		$balance = $row['balance'];
 		$tier = $row['tier'];
 		$birth = $row['birth_date'];
+		$bday = date_create($row['birth_date']);
+		$birth_date = date_format($bday, 'M/d/Y');
 		$today= date('m/d/Y');
 		
 		$datetime1 = new DateTime($today) ;
@@ -56,7 +58,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Full Name</label>
 					<p>".$row['fname']." ".$row['mname']." ".$row['lname']."</p>
 					<label>Birthday</label>
-					<p>".$row['birth_date']."</p>
+					<p>".$birth_date."</p>
 					<label>Age</label>
 					<p>".$age."</p>
 					<label>Phone Number</label>
@@ -93,8 +95,9 @@ if(isset($_POST['process_loan'])){
 	if($valid) {
 		$customer_id = $_SESSION['customer_id'];
 		$balance = $row['balance'];
-		$new_balance = $balance + $loan_amount;
-		$due_date = date('M/d/Y', strtotime('+2 months'));
+		$new_amount = $loan_amount * .01;
+		$new_balance = $balance + $new_amount + $loan_amount;
+		$due_date = date('m/d/Y', strtotime('+1 months'));
 
 		$update = "UPDATE `customers` SET `balance` = '$new_balance', `due_date` = '$due_date' WHERE `customers`.`customer_id` = '$customer_id'";
 

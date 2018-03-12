@@ -16,6 +16,8 @@ if (mysqli_num_rows($result)> 0) {
 		$_SESSION['tier'] = $row['tier'];
 		$tier = $_SESSION['tier'];
 		$birth = $row['birth_date'];
+		$bday = date_create($row['birth_date']);
+		$birth_date = date_format($bday, 'M/d/Y');
 		$today= date('m/d/Y');
 
 		
@@ -47,7 +49,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Full Name</label>
 					<p>".$row['fname']." ".$row['mname']." ".$row['lname']."</p>
 					<label>Birthday</label>
-					<p>".$row['birth_date']."</p>
+					<p>".$birth_date."</p>
 					<label>Age</label>
 					<p>".$age."</p>
 					<label>Phone Number</label>

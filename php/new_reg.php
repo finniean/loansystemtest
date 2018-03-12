@@ -91,19 +91,27 @@ if(isset($_POST['register'])){
     }
     
     $add_docu = $_FILES['add_docu']['name'];
-    $docutarget = $_SERVER[ 'DOCUMENT_ROOT']."/add_docus/".basename($image);
+    $docutarget = $_SERVER[ 'DOCUMENT_ROOT']."/add_docus/".basename($add_docu);
     move_uploaded_file($_FILES['add_docu']['tmp_name'], $docutarget);
 
     $customer_id = date('mdyis');
     $admin_id = $_SESSION['admin_id'];
 
     if ($valid){
+        $exist = "SELECT * FROM `customers` WHERE fname = '$fname' AND mname = '$mname' AND lname = '$lname'";
+        $existed = mysqli_query($link, $exist);
+
+        if(mysqli_num_rows($existed) != 1){
         $birth_date =  $birth_month ."/". $birth_day ."/". $birth_year;
         $sql = "INSERT INTO `customers` (`customer_id`, `admin_id`, `fname`, `mname`, `lname`, `birth_date`, `phone_number`, `address`, `image`, `add_docu`) VALUES ('$customer_id', '$admin_id', '$fname', '$mname', '$lname', '$birth_date', '$phone', '$address', '$image', '$add_docu')";
 
-        if(mysqli_query($link, $sql)){
-            echo "<span class='error'>
-            <strong>Success!</strong> You have been registered. You can login now.
+            if(mysqli_query($link, $sql)){
+                header('Location:/pages/view_cus.php?customer_id='.$customer_id.'');
+            }
+        }
+        else {
+            echo "<span class='error' style='font-size: 100%!important;'>
+            Customer already exists.
             </span>";
         }
     }

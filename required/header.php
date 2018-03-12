@@ -20,8 +20,7 @@
 					<?php
 					session_start(); 
 					echo "Welcome! Admin ";
-					echo "<a href='view_admin.php?admin_id=". $_SESSION['admin_id'] ."'>". $_SESSION['firstname'] ."</a>
-					<br><a href='/php/logout.php'>Log Out</a>";
+					echo "<a href='view_admin.php?admin_id=". $_SESSION['admin_id'] ."'>". $_SESSION['firstname'] ."</a>";
 					?>
 				</h4>
 			</div>

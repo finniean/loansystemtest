@@ -134,10 +134,18 @@ select {
     background-repeat: repeat-x;
     border-color: #FF9821;
     border: 1px solid transparent;
-    border-radius: 10px 10px 0 0;
     padding: 5px 15px;
     display: inline-block;
     color: #272822;
+}
+.site-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.site-navigation li {
+    float: left;
+    margin-right: 3px;
 }
 .site-navigation a:hover{
     background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%);
@@ -145,12 +153,12 @@ select {
     border-color: #41443A;
     color: white;
 }
-/*.site-navigation li.active a{
+.site-navigation li.active a{
     background-image: linear-gradient(to bottom,#4F5246 0,#41443A 100%);
     background-repeat: repeat-x;
     border-color: #41443A;
     color: white;
-}*/
+}
 /*Customer Info*/
 .admin_info .col1,
 .customer_info .col1{
@@ -180,14 +188,15 @@ select {
 .customer_info p{
     margin-top: 0;
 }
-input#loan_amount {
+input#loan_amount,
+input#payment_amount {
     width: 70%;
 }
-.loan_history,
+/*.loan_history,
 .payment_history{
     width: 50%;
     float: left;
-}
+}*/
 /*Results*/
 .form-result table{
     width: 100%;
@@ -195,7 +204,7 @@ input#loan_amount {
 }
 .resultslabel th,
 .resultsrow td{
-    width: 20%;
+    width: 15%;
     text-align: left;
     padding: 5px 10px;
     border: 1px solid white;

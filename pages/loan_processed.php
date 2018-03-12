@@ -1,4 +1,8 @@
 <?php $title='Loan Processed' ; include($_SERVER[ 'DOCUMENT_ROOT']. '/required/header.php'); include($_SERVER[ 'DOCUMENT_ROOT']. '/required/navigation.php');
+
+if (empty($_SESSION['admin_id'])){
+	header('Location:/index.php');
+}
 ?>
 
 <!-- Content -->

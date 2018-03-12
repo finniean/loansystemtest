@@ -113,12 +113,23 @@ if(isset($_POST['admin_register'])){
     $admin_id = date('mdyis');
 
     if ($valid){
-        $birth_date =  $birth_month ."/". $birth_day ."/". $birth_year;
-        $sql = "INSERT INTO `admins` (`admin_id`, `username`, `password`, `fname`, `mname`, `lname`, `birth_date`, `phone_number`, `address`, `image`) VALUES ('$admin_id', '$username', '$password', '$fname', '$mname', '$lname', '$birth_date', '$phone', '$address', '$image')";
+        $exist = "SELECT * FROM `admins` WHERE fname = '$fname' AND mname = '$mname' AND lname = '$lname'";
+        $existed = mysqli_query($link, $exist);
 
-        if(mysqli_query($link, $sql)){
-            header('Location:/index.php');
+        if(mysqli_num_rows($existed) < 0){
+            $birth_date =  $birth_month ."/". $birth_day ."/". $birth_year;
+
+            $sql = "INSERT INTO `admins` (`admin_id`, `username`, `password`, `fname`, `mname`, `lname`, `birth_date`, `phone_number`, `address`, `image`) VALUES ('$admin_id', '$username', '$password', '$fname', '$mname', '$lname', '$birth_date', '$phone', '$address', '$image')";
+
+            if(mysqli_query($link, $sql)){
+                header('Location:/index.php');
+            }
         }
+        else {
+            echo "<span class='error' style='font-size: 100%!important;'>
+            Customer already exists.
+            </span>";
+        }   
     }
 
     else {
