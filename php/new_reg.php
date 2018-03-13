@@ -98,12 +98,14 @@ if(isset($_POST['register'])){
     $admin_id = $_SESSION['admin_id'];
 
     if ($valid){
-        $exist = "SELECT * FROM `customers` WHERE fname = '$fname' AND mname = '$mname' AND lname = '$lname'";
+        $birth_date =  $birth_month ."/". $birth_day ."/". $birth_year;
+        $fullname =  $fname ." ". $mname ." ". $lname;
+
+        $exist = "SELECT * FROM `customers` WHERE fullname = '$fullname' AND birth_date = '$birth_date'";
         $existed = mysqli_query($link, $exist);
 
         if(mysqli_num_rows($existed) != 1){
-        $birth_date =  $birth_month ."/". $birth_day ."/". $birth_year;
-        $sql = "INSERT INTO `customers` (`customer_id`, `admin_id`, `fname`, `mname`, `lname`, `birth_date`, `phone_number`, `address`, `image`, `add_docu`) VALUES ('$customer_id', '$admin_id', '$fname', '$mname', '$lname', '$birth_date', '$phone', '$address', '$image', '$add_docu')";
+        $sql = "INSERT INTO `customers` (`customer_id`, `admin_id`, `fullname`, `birth_date`, `phone_number`, `address`, `image`, `add_docu`) VALUES ('$customer_id', '$admin_id', '$fullname', '$birth_date', '$phone', '$address', '$image', '$add_docu')";
 
             if(mysqli_query($link, $sql)){
                 header('Location:/pages/view_cus.php?customer_id='.$customer_id.'');

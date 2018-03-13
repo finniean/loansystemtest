@@ -12,7 +12,7 @@ if (mysqli_num_rows($result)> 0) {
 	while ($row = mysqli_fetch_array($result)) {
 		$balance = $row['balance'];
 		$birth = $row['birth_date'];
-		$bday = date_create($row['birth_date']);
+		$bday = date_create($birth);
 		$birth_date = date_format($bday, 'M/d/Y');
 		$today= date('m/d/Y');
 		
@@ -32,7 +32,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Customer ID</label>
 					<p>".$row['customer_id']."</p>
 					<label>Full Name</label>
-					<p>".$row['fname']." ".$row['mname']." ".$row['lname']."</p>
+					<p>".$row['fullname']."</p>
 					<label>Birthday</label>
 					<p>".$birth_date."</p>
 					<label>Age</label>

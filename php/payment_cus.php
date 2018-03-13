@@ -47,7 +47,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Customer ID</label>
 					<p>".$row['customer_id']."</p>
 					<label>Full Name</label>
-					<p>".$row['fname']." ".$row['mname']." ".$row['lname']."</p>
+					<p>".$row['fullname']."</p>
 					<label>Birthday</label>
 					<p>".$birth_date."</p>
 					<label>Age</label>
@@ -99,6 +99,11 @@ if(isset($_POST['process_payment'])){
 			$insert = "INSERT INTO `payments` (`payment_id`, `customer_id`, `admin_id`, `payment_amount`, `payment_date`) VALUES ('$payment_id', '$customer_id', '$admin_id', '$payment_amount', '$date_now');";
 
 			if(mysqli_query($link, $insert)){
+				$_SESSION['payment_id'] = $payment_id;
+				$_SESSION['customer_id'] = $customer_id;
+				$_SESSION['payment_amount'] = $payment_amount;
+				$_SESSION['balance'] = $balance;
+				$_SESSION['payment_date'] = $date_now;
 				header('Location:/pages/payment_processed.php');
 			}
 		}
@@ -115,7 +120,6 @@ if(isset($_POST['process_payment'])){
 
 				$remove = "UPDATE `customers` SET `due_date` = 'No existing loan balance', `tier` = '$new_tier' WHERE `customers`.`customer_id` = '$customer_id'";
 				$removal = mysqli_query($link, $remove);
-
 			}
 		}
 	}

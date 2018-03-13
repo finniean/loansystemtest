@@ -40,8 +40,9 @@
 		                    echo '<select name="birth_month">';
 		                    echo '<option selected disabled>Month</option>';
 		                    for($i = 1; $i <= 12; $i++){
-		                        $i = str_pad($i, 2, 0, STR_PAD_LEFT);
-		                        echo "<option value='$i'>$i</option>";
+		                        $month_num = str_pad( $i, 2, 0, STR_PAD_LEFT );
+       							$month_name = date( 'F', mktime( 0, 0, 0, $i + 1, 0, 0 ) );
+		                        echo "<option value='$month_num'>$month_name</option>";
 		                    }
 		                    echo '</select>';
 		                    echo '<select name="birth_day">';
@@ -59,12 +60,12 @@
 		                    echo '</select> ';
 		                    ?>
 	                    </div>
-	                    <div id="admin_phone_number" class="form-group <?php echo $phoneError; ?>">
+	                </div>
+	                <div class="reg_col2">
+	                	<div id="admin_phone_number" class="form-group <?php echo $phoneError; ?>">
 	                    	<label>Phone Number <span class="error">* <?php echo $phoneErr; ?></span></label>
 							<input type="text" name="admin_phone_number">
 	                    </div>
-	                </div>
-	                <div class="reg_col2">
 	                    <div id="admin_address" class="form-group <?php echo $addressError; ?>">
 	                    	<label>Address <span class="error">* <?php echo $addressErr; ?></span></label>
 							<input type="text" name="admin_address">

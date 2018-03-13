@@ -33,8 +33,9 @@ if (empty($_SESSION['admin_id'])){
 		                    echo '<select name="birth_month">';
 		                    echo '<option selected disabled>Month</option>';
 		                    for($i = 1; $i <= 12; $i++){
-		                        $i = str_pad($i, 2, 0, STR_PAD_LEFT);
-		                        echo "<option value='$i'>$i</option>";
+		                        $month_num = str_pad( $i, 2, 0, STR_PAD_LEFT );
+       							$month_name = date( 'F', mktime( 0, 0, 0, $i + 1, 0, 0 ) );
+		                        echo "<option value='$month_num'>$month_name</option>";
 		                    }
 		                    echo '</select>';
 		                    echo '<select name="birth_day">';

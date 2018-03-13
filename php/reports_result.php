@@ -4,6 +4,7 @@ require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
 $start_date = mysqli_real_escape_string($link, $_REQUEST['start_date']);
 $end_date = mysqli_real_escape_string($link, $_REQUEST['end_date']);
 $history = mysqli_real_escape_string($link, $_REQUEST['history']);
+
 if ($history == 'loan_history'){
 	$loanhis = "SELECT * FROM `loans` WHERE `loan_date` BETWEEN '$start_date' AND '$end_date' ORDER BY `loan_date` DESC";
 	$loanhistory = mysqli_query($link, $loanhis);

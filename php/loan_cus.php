@@ -56,7 +56,7 @@ if (mysqli_num_rows($result)> 0) {
 					<label>Customer ID</label>
 					<p>".$row['customer_id']."</p>
 					<label>Full Name</label>
-					<p>".$row['fname']." ".$row['mname']." ".$row['lname']."</p>
+					<p>".$row['fullname']."</p>
 					<label>Birthday</label>
 					<p>".$birth_date."</p>
 					<label>Age</label>
@@ -95,8 +95,8 @@ if(isset($_POST['process_loan'])){
 	if($valid) {
 		$customer_id = $_SESSION['customer_id'];
 		$balance = $row['balance'];
-		$new_amount = $loan_amount * .01;
-		$new_balance = $balance + $new_amount + $loan_amount;
+		$interest = $loan_amount * .01;
+		$new_balance = $balance + $interest + $loan_amount;
 		$due_date = date('m/d/Y', strtotime('+1 months'));
 
 		$update = "UPDATE `customers` SET `balance` = '$new_balance', `due_date` = '$due_date' WHERE `customers`.`customer_id` = '$customer_id'";
@@ -107,9 +107,15 @@ if(isset($_POST['process_loan'])){
 			$admin_id = $_SESSION['admin_id'];
 			$date_now = date("M/d/Y h:i:s A");
 
-			$insert = "INSERT INTO `loans` (`loan_id`, `customer_id`, `admin_id`, `loan_amount`, `loan_date`, `due_date`) VALUES ('$loan_id', '$customer_id', '$admin_id', '$loan_amount', '$date_now', '$due_date');";
+			$insert = "INSERT INTO `loans` (`loan_id`, `customer_id`, `admin_id`, `loan_amount`, `loan_date`, `due_date`) VALUES ('$loan_id', '$customer_id', '$admin_id', '$new_balance', '$date_now', '$due_date');";
 
 			if(mysqli_query($link, $insert)){
+				$_SESSION['loan_id'] = $loan_id;
+				$_SESSION['customer_id'] = $customer_id;
+				$_SESSION['loan_amount'] = $loan_amount;
+				$_SESSION['interest'] = $interest;
+				$_SESSION['loan_date'] = $date_now;
+				$_SESSION['due_date'] = $due_date;
 				header('Location:/pages/loan_processed.php');
 			}
 		}

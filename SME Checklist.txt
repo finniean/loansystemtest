@@ -1,8 +1,5 @@
 SME Checklist
 
-Registration successful message
-Loan and Payment successful message
 Footer changw
 Cronjob for late fee
 Print customer registration
-multiple search criteria

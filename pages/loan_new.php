@@ -16,6 +16,10 @@ if (empty($_SESSION['admin_id'])){
 						<label>Customer ID</label>
 						<input type="text" name="customer_id">
 					</div>
+					<div id="cus_cid" class="form-group">
+						<label>First Name</label>
+						<input type="text" name="customer_fullname">
+					</div>
 					<button type="submit"  name="search">Search</button>
 				</form>
 			</div>
