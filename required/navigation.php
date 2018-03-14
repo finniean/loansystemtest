@@ -5,6 +5,7 @@
 				<li><a href="/pages/due_loans.php">Due Loans</a></li>
 				<li><a href="/pages/cus_search.php">Search Customer</a></li>
 				<li><a href="/pages/new_reg.php">New Customer</a></li>
+				<li><a href="/pages/edit_search.php">Edit Customer</a></li>
 				<li><a href="/pages/loan_new.php">New Loan</a></li>
 				<li><a href="/pages/payment_new.php">Payment</a></li>
 				<li><a href="/pages/reports.php">Reports</a></li>
