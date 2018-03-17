@@ -1,5 +1,0 @@
-SME Checklist
-
-Footer changw
-Cronjob for late fee
-Print customer registration

@@ -106,8 +106,9 @@ if(isset($_POST['admin_register'])){
     }
     else{
         $image = $_FILES['admin_image']['name'];
-        $target = $_SERVER[ 'DOCUMENT_ROOT']."/uploads/".basename($image);
-        move_uploaded_file($_FILES['admin_image']['tmp_name'], $target);
+        $temp = explode(".", $_FILES["admin_image"]["name"]);
+        $newfilename = date('mdyis') . '.' . end($temp);
+        move_uploaded_file($_FILES["admin_image"]["tmp_name"], $_SERVER[ 'DOCUMENT_ROOT']."/uploads/" . $newfilename);
     }
 
     $admin_id = date('mdyis');

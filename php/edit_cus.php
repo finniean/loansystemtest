@@ -1,6 +1,8 @@
 <?php
 require($_SERVER[ 'DOCUMENT_ROOT']. '/php/connect.php');
 
+$full_name = $birth_date = $phone = $address = $image = $add_docu = '';
+
 $customer_id = $_GET['customer_id'];
 
 $sql = "SELECT * FROM `customers` WHERE `customers`.`customer_id` = '$customer_id'";
@@ -10,7 +12,7 @@ if (mysqli_num_rows($result)> 0) {
 	$_SESSION['customer_id'] = $_GET['customer_id'];
 
 	while ($row = mysqli_fetch_array($result)) {
-		$balance = $row['balance'];
+		$customer_id = $row['customer_id'];
 		$birth = $row['birth_date'];
 		$bday = date_create($birth);
 		$birth_date = date_format($bday, 'M/d/Y');
@@ -20,6 +22,13 @@ if (mysqli_num_rows($result)> 0) {
 		$datetime2 = new DateTime($birth) ;
 		$interval = $datetime1->diff($datetime2);
 		$age = $interval->format('%Y');
+
+		$_SESSION['rowname'] = $row['fullname'];
+		$_SESSION['rowbday'] = $row['birth_date'];
+		$_SESSION['rowphone'] = $row['phone_number'];
+		$_SESSION['rowaddress'] = $row['address'];
+		$_SESSION['rowimage'] = $row['image'];
+		$_SESSION['rowdocu'] = $row['add_docu'];
 
 		$customer_info = "
 			<div class='customer_info clearfix'>
@@ -43,25 +52,20 @@ if (mysqli_num_rows($result)> 0) {
 					<input type='text' name='edit_phone_number' value='". $row['phone_number'] ."'>
 					<label>Address</label>
 					<input type='text' name='edit_address' value='". $row['address'] ."'>
-					<label>Balance</label>
-					<p>₱ ".$row['balance']."</p>
-					<label>Last Loan Due Date</label>
-					<p>".$row['due_date']."</p>
+					<label>Photo</label>
+					<input name='edit_image' type='file'>
+					<label>Additional Document</label>
+					<input name='edit_docu' type='file'>
 				</div>
 			</div>"
 		;
 	}
 }
 				
-$full_name = $birth_date = $phone = $address = $full_nameErr = $birth_dateErr = $phoneErr =  $addressErr = $imageErr = $full_nameError = $birth_dateError = $phoneError = $addressError = '';
-
 if(isset($_POST['edit'])){
-    $valid = true;
 
     if (empty($_POST["edit_fullname"])) {
-        $valid = false;
-        $full_nameErr = "required";
-        $full_nameError = 'error';
+        $full_name = $_SESSION['rowname'];
     }
 
     else {
@@ -69,48 +73,55 @@ if(isset($_POST['edit'])){
     }
 
     if (empty($_POST["edit_birth_date"])) {
-        $valid = false;
-        $birth_dateErr = "required";
-        $birth_dateError = 'error';
+        $birth_date = $_SESSION['rowbday'];
     }
     else {
         $birth_date = mysqli_real_escape_string($link, $_REQUEST['edit_birth_date']);
     }
 
     if (empty($_POST["edit_phone_number"])) {
-        $valid = false;
-        $phoneErr = "required";
-        $phoneError = 'error';
+        $phone = $_SESSION['rowphone'];
     }
     else {
         $phone = mysqli_real_escape_string($link, $_REQUEST['edit_phone_number']);
     }
 
     if (empty($_POST["edit_address"])) {
-        $valid = false;
-        $addressErr = "required";
-        $addressError = "error";
+        $address = $_SESSION['rowaddress'];
     }
     else {
         $address = mysqli_real_escape_string($link, $_REQUEST['edit_address']);
     }
 
-    if ($valid){
-    	$customer_id = $_SESSION['customer_id'];
-
-        $update = "UPDATE `customers` SET `fullname` = '$full_name', `birth_date` = '$birth_date', `phone_number` = '$phone', `address` = '$address' WHERE `customers`.`customer_id` = '$customer_id'";
-
-        if(mysqli_query($link, $update)){
-        	header('Location:/pages/view_cus.php?customer_id='.$customer_id.'');
-        }
+    if(empty($_FILES['edit_image']['name'])) {
+        $newfilename = $_SESSION['rowimage'];
+    }
+    else{
+        $image = $_FILES['edit_image']['name'];
+        $temp = explode(".", $_FILES["edit_image"]["name"]);
+        $newfilename = $customer_id . '.' . end($temp);
+        move_uploaded_file($_FILES["edit_image"]["tmp_name"], $_SERVER[ 'DOCUMENT_ROOT']."/uploads/" . $newfilename);
     }
 
-    else {
-        echo "<span class='error' style='font-size: 100%;!important;'>
-        Sorry! Please fill the <strong>REQUIRED</strong> fields.
-        </span>";
+    if(empty($_FILES['edit_image']['name'])) {
+        $newdocuname = $_SESSION['rowdocu'];
     }
+    else{
+        $add_docu = $_FILES['edit_docu']['name'];
+	    $docu = explode(".", $_FILES["edit_docu"]["name"]);
+	    $newdocuname = $customer_id . '.' . end($docu);
+	    move_uploaded_file($_FILES["edit_docu"]["tmp_name"], $_SERVER[ 'DOCUMENT_ROOT']."/add_docus/" . $newdocuname);
+    }
+    
+	$customer_id = $_SESSION['customer_id'];
+
+    $update = "UPDATE `customers` SET `fullname` = '$full_name', `birth_date` = '$birth_date', `phone_number` = '$phone', `address` = '$address' , `image` = '$newfilename', add_docu = '$newdocuname' WHERE `customers`.`customer_id` = '$customer_id'";
+
+	if(mysqli_query($link, $update)){
+		header('Location:/pages/view_cus.php?customer_id='.$customer_id.'');
+	}
 }
+
 if(isset($_POST['delete'])){
 	$customer_id = $_SESSION['customer_id'];
 

@@ -21,11 +21,22 @@ if (mysqli_num_rows($result)> 0) {
 		$interval = $datetime1->diff($datetime2);
 		$age = $interval->format('%Y');
 
+		if($row['add_docu'] == 'No Additional Documents'){
+			$add_docu = "<p>No Addtional Documents</p>";
+		}
+		else{
+			$add_docu = "<a target='_blank' href='/add_docus/".$row['add_docu']."'><p>".$row['add_docu']."</p></a>";
+		}
+
 		$customer_info = "
 			<div class='customer_info clearfix'>
 				<div class='col1'>
 					<div class='customer_image'>
 						<img src='/uploads/".$row['image']."'>
+					</div>
+					<div class='customer_docu'>
+						<label> Addtional Document</label>
+						". $add_docu ."
 					</div>
 				</div>
 				<div class='col2'>

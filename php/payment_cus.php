@@ -42,6 +42,10 @@ if (mysqli_num_rows($result)> 0) {
 					<div class='customer_image'>
 						<img src='/uploads/".$row['image']."'>
 					</div>
+					<div class='customer_docu'>
+						<label> Addtional Document</label>
+						<a target='_blank' href='/add_docus/".$row['add_docu']."'><p>".$row['add_docu']."</p></a>
+					</div>
 				</div>
 				<div class='col2'>
 					<label>Customer ID</label>

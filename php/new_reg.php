@@ -86,14 +86,20 @@ if(isset($_POST['register'])){
     }
     else{
         $image = $_FILES['cus_image']['name'];
-        $target = $_SERVER[ 'DOCUMENT_ROOT']."/uploads/".basename($image);
-        move_uploaded_file($_FILES['cus_image']['tmp_name'], $target);
+        $temp = explode(".", $_FILES["cus_image"]["name"]);
+        $newfilename = date('mdyis') . '.' . end($temp);
+        move_uploaded_file($_FILES["cus_image"]["tmp_name"], $_SERVER[ 'DOCUMENT_ROOT']."/uploads/" . $newfilename);
+    }
+    if(empty($_FILES['add_docu']['name'])) {
+        $newdocuname = 'No Additional Documents';
+    }
+    else{
+        $add_docu = $_FILES['add_docu']['name'];
+        $docu = explode(".", $_FILES["add_docu"]["name"]);
+        $newdocuname = date('mdyis') . '.' . end($docu);
+        move_uploaded_file($_FILES["add_docu"]["tmp_name"], $_SERVER[ 'DOCUMENT_ROOT']."/add_docus/" . $newdocuname);
     }
     
-    $add_docu = $_FILES['add_docu']['name'];
-    $docutarget = $_SERVER[ 'DOCUMENT_ROOT']."/add_docus/".basename($add_docu);
-    move_uploaded_file($_FILES['add_docu']['tmp_name'], $docutarget);
-
     $customer_id = date('mdyis');
     $admin_id = $_SESSION['admin_id'];
 
@@ -105,7 +111,7 @@ if(isset($_POST['register'])){
         $existed = mysqli_query($link, $exist);
 
         if(mysqli_num_rows($existed) != 1){
-        $sql = "INSERT INTO `customers` (`customer_id`, `admin_id`, `fullname`, `birth_date`, `phone_number`, `address`, `image`, `add_docu`) VALUES ('$customer_id', '$admin_id', '$fullname', '$birth_date', '$phone', '$address', '$image', '$add_docu')";
+        $sql = "INSERT INTO `customers` (`customer_id`, `admin_id`, `fullname`, `birth_date`, `phone_number`, `address`, `image`, `add_docu`) VALUES ('$customer_id', '$admin_id', '$fullname', '$birth_date', '$phone', '$address', '$newfilename', '$newdocuname')";
 
             if(mysqli_query($link, $sql)){
                 header('Location:/pages/view_cus.php?customer_id='.$customer_id.'');

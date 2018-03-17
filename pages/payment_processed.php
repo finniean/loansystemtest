@@ -31,4 +31,10 @@ if (empty($_SESSION['admin_id'])){
 </div>
 <!-- Content -->
 
-<?php include($_SERVER[ 'DOCUMENT_ROOT']. '/required/footer.php');?>
+<?php include($_SERVER[ 'DOCUMENT_ROOT']. '/required/footer.php');
+unset($_SESSION['payment_id']);
+unset($_SESSION['customer_id']);
+unset($_SESSION['payment_amount']);
+unset($_SESSION['balance']);
+unset($_SESSION['payment_date']);
+?>

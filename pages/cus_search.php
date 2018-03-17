@@ -17,7 +17,7 @@ if (empty($_SESSION['admin_id'])){
 						<input type="text" name="customer_id">
 					</div>
 					<div id="cus_cid" class="form-group">
-						<label>First Name</label>
+						<label>Full Name</label>
 						<input type="text" name="customer_fullname">
 					</div>
 					<button type="submit"  name="search">Search</button>

@@ -180,6 +180,19 @@ select {
     padding: 10px;
     border: 1px #FF9821 solid;
 }
+.customer_info .customer_docu{
+    width: 200px;
+    height: 100%;
+    margin: auto;
+    margin-top: 10px;
+}
+.customer_info .customer_docu a{
+    color: #272822;
+    text-decoration: underline;
+}
+.customer_info .customer_docu a:hover{
+    color: white;
+}
 .admin_info label,
 .customer_info label{
     color: #FF9821;
@@ -268,7 +281,12 @@ button a{
 }
 .footer #footer-nav a,
 .footer #footer-contact a{
+    text-decoration: underline;
     font-size: 80%;
     color: #272822;
     margin: 5px 0 5px 15px;
+}
+.footer #footer-nav a:hover,
+.footer #footer-contact a:hover{
+    color: white;
 }
